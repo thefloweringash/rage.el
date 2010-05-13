@@ -23,7 +23,8 @@
   (interactive "r")
   (save-excursion
     (goto-char beg)
-    (let ((cyclic-rage (rage-str)))
+    (let ((cyclic-rage (rage-str))
+	  (buffer-read-only nil))
       (while (re-search-forward (rx (syntax word)) end t)
 	(goto-char (match-beginning 0))
 	(delete-char 1)
