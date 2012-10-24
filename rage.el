@@ -14,8 +14,8 @@
   :group 'rage)
 
 (defun rage-str ()
-  (concat (make-string rage-f-length ?F)
-          (make-string rage-u-length ?U)))
+  (concat (make-string rage-f-length ?f)
+          (make-string rage-u-length ?u)))
 
 (defun rage ()
   (interactive)
@@ -28,9 +28,7 @@
     (let ((cyclic-rage (rage-str))
           (buffer-read-only nil))
       (while (re-search-forward (rx (syntax word)) end t)
-        (goto-char (match-beginning 0))
-        (delete-char 1)
-        (insert (substring cyclic-rage 0 1))
+        (replace-match (substring cyclic-rage 0 1))
         (setq cyclic-rage (if (eq (length cyclic-rage) 1)
                               (rage-str)
                             (substring cyclic-rage 1)))))))
