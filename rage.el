@@ -1,3 +1,5 @@
+;; -*- mode: emacs-lisp; indent-tabs-mode: nil -*-
+
 (defgroup rage nil
   "Rage controlling variables")
 
@@ -13,7 +15,7 @@
 
 (defun rage-str ()
   (concat (make-string rage-f-length ?F)
-	  (make-string rage-u-length ?U)))
+          (make-string rage-u-length ?U)))
 
 (defun rage ()
   (interactive)
@@ -24,14 +26,14 @@
   (save-excursion
     (goto-char beg)
     (let ((cyclic-rage (rage-str))
-	  (buffer-read-only nil))
+          (buffer-read-only nil))
       (while (re-search-forward (rx (syntax word)) end t)
-	(goto-char (match-beginning 0))
-	(delete-char 1)
-	(insert (substring cyclic-rage 0 1))
-	(setq cyclic-rage (if (eq (length cyclic-rage) 1)
-			      (rage-str)
-			    (substring cyclic-rage 1)))))))
+        (goto-char (match-beginning 0))
+        (delete-char 1)
+        (insert (substring cyclic-rage 0 1))
+        (setq cyclic-rage (if (eq (length cyclic-rage) 1)
+                              (rage-str)
+                            (substring cyclic-rage 1)))))))
 
 
 (provide 'rage)
