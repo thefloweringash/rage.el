@@ -1,15 +1,23 @@
-;; -*- mode: emacs-lisp; indent-tabs-mode: nil -*-
+;;; rage.el --- When you just can't take it
+
+;;; Commentary:
+
+;; Silly mode for clobbering all your work
+
+;;; Code:
 
 (defgroup rage nil
-  "Rage controlling variables")
+  "Rage controlling variables"
+  :prefix "rage-"
+  :group 'games)
 
 (defcustom rage-f-length 7
-  "Number of 'f' characters in a rage"
+  "Number of 'f' characters in a rage."
   :type '(integer)
   :group 'rage)
 
 (defcustom rage-u-length 12
-  "Number of 'u' characters in a rage"
+  "Number of 'u' characters in a rage."
   :type '(integer)
   :group 'rage)
 
@@ -17,10 +25,12 @@
   (concat (make-string rage-f-length ?f)
           (make-string rage-u-length ?u)))
 
+;;;###autoload
 (defun rage ()
   (interactive)
   (insert (rage-str)))
 
+;;;###autoload
 (defun rage-region (beg end)
   (interactive "r")
   (save-excursion
@@ -33,5 +43,5 @@
                               (rage-str)
                             (substring cyclic-rage 1)))))))
 
-
 (provide 'rage)
+;;; rage.el ends here
